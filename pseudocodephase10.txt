@@ -1,0 +1,75 @@
+Variables:
+Deck [list]
+Player1 [list]
+Player1Table [list]
+Player2 [list]
+Player2Table [list]
+Discard (string)
+Turn
+
+
+# Start game
+Ask User for input to play the game
+Evaluate if the game should proceed or close
+
+#Ask from Players’ names 
+Ask for Player1’s name & Reassign Player1 to user input
+Ask for Player2’s name & Reassign Player2 to user input
+
+#Shuffle deck at beginning of round
+
+Deck = [list 1-12] 8 of each card
+Create random number generator
+Re - index Deck using random number generator
+
+#Deal 10 cards to begin game
+Move 10 cards from the deck to each player’s hand
+Move 1 card to discard pile
+
+#Function to evaluate game winner 
+Evaluate if player’s hand is empty
+If True Print that’s player’s name as the winner 
+
+#Function to change player’s turn
+Set turn to the next player
+
+#who’s  turn is it
+Evaluate who’s turn it is by using If statement on the variable turn
+
+#display player's hand and discard option function
+Display player's hand based on turn variable
+Display Discard card
+
+#function to sort player's hand
+Sort player's hand from smallest to largest
+
+# Player’s turn function
+Display player's hand and discard option function
+Ask for user input for 2 options: Draw a card (D) or Pick up from Discard pile (P)
+
+#Function to Discard a card from hand
+Ask user for 1 card to discard
+Set Discard variable to the new card and remove from user’s hand
+
+#Function to Draw a card from pile (D)
+Get card from Draw pile & add to player’s hand
+Call function to sort player's hand and display hand
+Ask User input: Lay down phase (L) or Discard (D)
+Call function Discard or Laydown function based on user input
+Call function Game Winner
+Call function change player’s turn
+
+#Function to Pick up from Discard pile (P)
+Get card from discard pile & add to player’s hand
+Call function to sort players hand
+Ask User input: Lay down phase (L) or Discard (D)
+Call function Discard or Laydown function based on user input
+Call function Game Winner
+Call function change player’s turn
+
+#Function to evaluate if hand being laydown is acceptable
+Evaluate if there are at least 2 sets of 3 but no other cards
+
+#Function to laydown hand
+Have player select which cards in their hand to laydown on the table
+Call function to evaluate if hand matches 2 sets of 3
