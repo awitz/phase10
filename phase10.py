@@ -1,10 +1,11 @@
 """Play Phase 10 with 2 player"""
 
-def create_deck ():
 
     # import modules
     import itertools, random
 
+
+def create_deck ():
     # make a deck of cards
     deck = list(itertools.product(range(1,12),['Red','Red','Blue','Blue','Yellow','Yellow','Green','Green']))
     # shuffle the cards
@@ -14,62 +15,66 @@ def create_deck ():
 
 def deal_cards (player1_hand,player2_hand,deck,discard):
     # draw ten cards for each player
-    player1_hand.extend(deal_player_hands (deck))
-    player2_hand.extend(deal_player_hands (deck))
-
-    discard.append(deck[0])
-    del deck[0]
+    player1_hand.extend(deal_player_hands(deck))
+    player2_hand.extend(deal_player_hands(deck))
+    # add 1 card to discard pile
+    discard.append(deck.pop(0))
 
 
 def deal_player_hands(deck):
     player_hand = []
-    for i in range(10):
-        player_hand.append(deck[i])
-    del deck [0:10]
+    for i<=10
+        player_hand.append(deck.pop(0))
+        i +=1 
     return player_hand
+
 
 def is_winner(player_hand):
     return len(player_hand) == 0
+
 
 def display_players_hand_discard(player_hand,player,discard):
     sort_player_hand(player_hand)
     print "\nPlayer " + str(player) + " hand: "
     
-    i=0
-    for card in player_hand:
+    i = 0
+    for card in player_hand::
         print str(i) + " : {}".format(card)
         i += 1
     print "\nDiscard pile: " + "\n" + str(discard)
 
+
 def sort_player_hand(player_hand):
     player_hand.sort()
 
+
 def draw_a_card(deck,player_hand,player):
-    player_hand.append(deck[0])
-    print "You picked up a {}".format(deck[0])
-    del deck[0]
+    player_hand.append(deck.pop(0))
+    print "You picked up a {}".format(player_hand[-1])
     sort_player_hand(player_hand)
     display_players_hand_discard(player_hand,player,discard)
     
+
 def decide_to_laydown_or_discard(player_hand,discard,player):
-    input = True
-    while input == True:
+    
+    while True:
         user_input = raw_input("\nWould you like to lay down phase (L) or Discard (D)? ").upper()
         if user_input == "L":
             laydown_phase(player_hand)
             discard_from_hand(player_hand,discard,player)
-            input = False
+            break
         elif user_input == "D":
             discard_from_hand(player_hand,discard,player)
-            input = False
+            break
         else:
             print "incorrect entry"
 
+
 def pick_up_discard(player_hand,discard,player):
-    player_hand.append(discard[0])
-    del discard[0]
+    player_hand.append(discard.pop(0))
     sort_player_hand(player_hand)
     display_players_hand_discard(player_hand,player,discard)
+
 
 def discard_from_hand(player_hand,discard,player):
     user_input = int(raw_input("Which card index would you like to discard? "))
@@ -80,9 +85,11 @@ def discard_from_hand(player_hand,discard,player):
         discard[0] = player_hand[user_input]
     del player_hand[user_input]
 
+
 def laydown_phase(player_hand):
     while True:
         card = raw_input("")
+
 
 def players_turn(player_hand,discard,deck,player):
     display_players_hand_discard(player_hand,player,discard)
@@ -94,6 +101,7 @@ def players_turn(player_hand,discard,deck,player):
 
     decide_to_laydown_or_discard(player_hand,discard,player)
 
+
 def run_game(player1_hand,player2_hand,deck,discard):
     player = 1
     while True:
@@ -101,19 +109,22 @@ def run_game(player1_hand,player2_hand,deck,discard):
         if player == 1:
             players_turn(player1_hand,discard,deck,player)
             player = 2
-        else:
+        elif player == 2:
             players_turn(player2_hand,discard,deck,player)
             player = 1
 
-"""Start of Game"""
-game = raw_input("Would you like to play Phase 10? ").lower()
-if game == "yes":
-    player1_hand = []
-    player2_hand = []
-    discard = []
-    deck = create_deck()
-    deal_cards(player1_hand,player2_hand,deck,discard)
-    run_game(player1_hand,player2_hand,deck,discard)
 
-else:
-    exit()
+def play_gmae(game)
+    if game == "y":
+        player1_hand = []
+        player2_hand = []
+        discard = []
+        deck = create_deck()
+        deal_cards(player1_hand,player2_hand,deck,discard)
+        run_game(player1_hand,player2_hand,deck,discard)
+    else:
+        exit()
+
+"""Start of Game"""
+game = raw_input("Would you like to play Phase 10? y or n: ").lower()
+play_game(game)
