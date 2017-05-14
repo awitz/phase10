@@ -1,8 +1,8 @@
 """Play Phase 10 with 2 player"""
 
 
-    # import modules
-    import itertools, random
+# import modules
+import itertools, random
 
 
 def create_deck ():
@@ -23,9 +23,8 @@ def deal_cards (player1_hand,player2_hand,deck,discard):
 
 def deal_player_hands(deck):
     player_hand = []
-    for i<=10
+    for i in range(10):
         player_hand.append(deck.pop(0))
-        i +=1 
     return player_hand
 
 
@@ -38,7 +37,7 @@ def display_players_hand_discard(player_hand,player,discard):
     print "\nPlayer " + str(player) + " hand: "
     
     i = 0
-    for card in player_hand::
+    for card in player_hand:
         print str(i) + " : {}".format(card)
         i += 1
     print "\nDiscard pile: " + "\n" + str(discard)
@@ -50,7 +49,7 @@ def sort_player_hand(player_hand):
 
 def draw_a_card(deck,player_hand,player):
     player_hand.append(deck.pop(0))
-    print "You picked up a {}".format(player_hand[-1])
+    print "\n\n\nYou picked up a {}".format(player_hand[-1])
     sort_player_hand(player_hand)
     display_players_hand_discard(player_hand,player,discard)
     
@@ -92,12 +91,17 @@ def laydown_phase(player_hand):
 
 
 def players_turn(player_hand,discard,deck,player):
+    print "\n\n\n************************************************\n\n"
+    print "\nIt is Player {}s turn.".format(player)
     display_players_hand_discard(player_hand,player,discard)
-    user_input = raw_input("\n Would you like to Draw a card (D) or Pick up from Discard pile (P)? ").upper()
-    if user_input == "D":
-        draw_a_card(deck,player_hand,player)
-    elif user_input == "P":
-        pick_up_discard(player_hand,discard,player)
+    user_input = raw_input("\nWould you like to Draw a card (D) or Pick up from Discard pile (P)? ").upper()
+    while True:
+        if user_input == "D":
+            draw_a_card(deck,player_hand,player)
+            break
+        elif user_input == "P":
+            pick_up_discard(player_hand,discard,player)
+            break
 
     decide_to_laydown_or_discard(player_hand,discard,player)
 
@@ -105,7 +109,6 @@ def players_turn(player_hand,discard,deck,player):
 def run_game(player1_hand,player2_hand,deck,discard):
     player = 1
     while True:
-        print "\nIt is Player {}s turn.".format(player)
         if player == 1:
             players_turn(player1_hand,discard,deck,player)
             player = 2
@@ -113,18 +116,14 @@ def run_game(player1_hand,player2_hand,deck,discard):
             players_turn(player2_hand,discard,deck,player)
             player = 1
 
-
-def play_gmae(game)
-    if game == "y":
-        player1_hand = []
-        player2_hand = []
-        discard = []
-        deck = create_deck()
-        deal_cards(player1_hand,player2_hand,deck,discard)
-        run_game(player1_hand,player2_hand,deck,discard)
-    else:
-        exit()
-
 """Start of Game"""
 game = raw_input("Would you like to play Phase 10? y or n: ").lower()
-play_game(game)
+if game == "y":
+    player1_hand = []
+    player2_hand = []
+    discard = []
+    deck = create_deck()
+    deal_cards(player1_hand,player2_hand,deck,discard)
+    run_game(player1_hand,player2_hand,deck,discard)
+else:
+    exit()
